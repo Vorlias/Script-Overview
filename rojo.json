@@ -1,0 +1,10 @@
+{
+  "name": "com.vorlias.scriptbrowser",
+  "servePort": 8000,
+  "partitions": {
+    "plugin": {
+      "path": "src",
+      "target": "ReplicatedStorage.ScriptBrowser.plugin"
+    }
+  }
+}
