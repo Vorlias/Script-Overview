@@ -13,6 +13,7 @@ local wndState = plScriptBrowser:GetWindowState();
 local window = plScriptBrowser:GetWindow();
 local browser = BrowserWidget.new(plugin, window);
 local version = string.format("%d.%d.%d", Config.Version[1], Config.Version[2], Config.Version[3]);
+local active = wndState.Enabled;
 
 local toolbar = plugin:CreateToolbar(
     string.format("%s %s", Config.Window.Title, version)
@@ -35,33 +36,48 @@ local toggleButton do
         Config.Buttons.Toggle.Icon
     );
 
-  
     local function onToggle()
-        toggleButton:SetActive(plScriptBrowser:Toggle());
+        local toggleResult = plScriptBrowser:Toggle();
+        toggleButton:SetActive(toggleResult);
+        active = toggleResult;
     end
     toggleButton.Click:Connect(onToggle);
     toggleButton:SetActive(wndState.Enabled);
 end
 
 local refreshButton do
+    local function onRefresh()
+        if (selectedItem) then
+            updateBrowserDisplay();
+        end
+    end
+
     refreshButton = toolbar:CreateButton(
         Config.Buttons.Refresh.Name,
         Config.Buttons.Refresh.Tooltip,
         Config.Buttons.Refresh.Icon
     );
+    refreshButton.Enabled = false;
+    refreshButton.Click:Connect(onRefresh);
 end
 
 
 
 selection:CreateSelectionSignal("LuaSourceContainer"):Connect(function(item, selected)
-    if (selected and not selectedItem) then
-        selectedItem = item;
-        browser:SetScriptTarget(item);
-        updateBrowserDisplay();
-    elseif (selectedItem == selected) then
-        selectedItem = nil;
-        browser:RemoveScriptTarget();
-        updateBrowserDisplay();
+    if (active) then
+        if (selected) then
+            refreshButton.Enabled = true;
+            selectedItem = item;
+            browser:SetScriptTarget(item);
+            updateBrowserDisplay();
+            
+        elseif (selectedItem == item) then
+            refreshButton.Enabled = false;
+            selectedItem = nil;
+            browser:RemoveScriptTarget();
+            updateBrowserDisplay();
+            
+        end
     end
 end)
 

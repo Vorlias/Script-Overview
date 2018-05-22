@@ -14,10 +14,6 @@ function Plugin:GetWindow()
     return self._window;
 end
 
-function Plugin:Refresh()
-
-end
-
 function Plugin:Toggle()
     self._enabled = not self._enabled;
     self._window.Enabled = self._enabled;
