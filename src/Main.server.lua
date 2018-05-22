@@ -41,6 +41,7 @@ local toggleButton do
         toggleButton:SetActive(toggleResult);
         active = toggleResult;
     end
+    toggleButton.ClickableWhenViewportHidden = true;
     toggleButton.Click:Connect(onToggle);
     toggleButton:SetActive(wndState.Enabled);
 end
@@ -57,6 +58,7 @@ local refreshButton do
         Config.Buttons.Refresh.Tooltip,
         Config.Buttons.Refresh.Icon
     );
+    refreshButton.ClickableWhenViewportHidden = true;
     refreshButton.Enabled = false;
     refreshButton.Click:Connect(onRefresh);
 end
