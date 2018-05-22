@@ -8,12 +8,14 @@ local VariableItemWidget = require(script.Parent.VariableItemWidget);
 local GroupItemWidget = require(script.Parent.GroupItemWidget);
 
 function BrowserWidget:ClearResults()
-	local scrollGui = self.ContentsScrollingFrame.Contents;
-	for _, child in next, scrollGui:GetChildren() do
-		if (child:IsA("GuiBase2d")) then
-			child:Destroy();
+	local scrollGui = self.ContentsScrollingFrame:FindFirstChild("Contents");
+	if (scrollGui) then 
+		for _, child in next, scrollGui:GetChildren() do
+			if (child:IsA("GuiBase2d")) then
+				child:Destroy();
+			end
 		end
-	end	
+	end
 end
 
 function BrowserWidget:RegisterItem(item)
