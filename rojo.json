@@ -6,17 +6,9 @@
       "path": "src",
       "target": "ReplicatedStorage.ScriptBrowser.plugin"
     },
-    "modules/promise": {
-      "path": "modules/promise/lib",
-      "target": "ReplicatedStorage.ScriptBrowser.modules.Promise"
-    },
     "modules/signal":{
       "path": "modules/Signal",
       "target": "ReplicatedStorage.ScriptBrowser.modules.Signal"     
-    },
-    "modules/roact":{
-      "path": "modules/Roact/lib",
-      "target": "ReplicatedStorage.ScriptBrowser.modules.Roact"     
     }
   }
 }
