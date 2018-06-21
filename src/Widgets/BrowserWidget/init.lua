@@ -97,10 +97,8 @@ function BrowserWidget:AutoResizeContents()
 	scrollGui.CanvasSize = UDim2.new(0, contentSize.X, 0, contentSize.Y);
 end
 
-local ui = script.Parent.UI.BrowserWidget;
-
 function BrowserWidget.new(plugin, parentTo)
-	local gui = ui.BrowserWidget:Clone();
+	local gui = require(script.UI)();
 	local filterInput = gui.Filter.Contents.FilterInput;
 	local contentsScrollFrame = gui.Contents.ContentsScrolling;
 	local scrollButtons = gui.Contents.ScrollButtons;

@@ -57,8 +57,6 @@ function GroupItemWidget:Toggle()
 	self:Update();
 end
 
-local ui = script.Parent.UI.GroupItemWidget;
-
 --[[@dox GroupItemWidget.new 
 	Test
 	@namespace GroupItemWidget
@@ -70,7 +68,7 @@ function GroupItemWidget.new(bw, namespace, scriptTarget)
 	assert(typeof(scriptTarget) == 'Instance' and scriptTarget:IsA("LuaSourceContainer"));
 	local scriptLine = namespace and namespace.Line;
 			
-	local gui = ui.Item:Clone();
+	local gui = require(script.UI)();
 	
 	gui.Header.Icon.Image = ICONS_ID;
 	gui.Header.Icon.ImageRectSize = Vector2.new(18, 18);

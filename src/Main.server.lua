@@ -1,11 +1,9 @@
--- Checks --
-assert(script.Parent.Widgets:WaitForChild("UI", 30), "UI not found under Widgets, import via 'models'");
-
 local Config = require(script.Parent.Config);
 local Plugin = require(script.Parent.Plugin);
 local Selection = require(script.Parent.Selection);
 local BrowserWidget = require(script.Parent.Widgets.BrowserWidget);
 local Parser = require(script.Parent.Parser);
+local Theme = require(script.Parent.Theme);
 
 local selection = Selection.new();
 local plScriptBrowser = Plugin.new(plugin);

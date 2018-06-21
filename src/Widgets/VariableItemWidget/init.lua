@@ -18,8 +18,6 @@ local IconOffset = {
 
 local ICONS_ID = 'rbxassetid://1691493749';
 
-local ui = script.Parent.UI.VariableItemWidget;
-
 --[[@dox VariableItemWidget.new 
 	Test
 	@namespace VariableItemWidget
@@ -40,7 +38,7 @@ function VariableItemWidget.new(result, scriptTarget)
 		VariableItemWidget.new(self, result.Name, result.Type, self.ScriptTarget, result.Line, result.Icon);
 --]]		
 			
-	local gui = ui.Item:Clone();
+	local gui = require(script.UI)();
 	
 	gui.Icon.Image = ICONS_ID;
 	gui.Icon.ImageRectSize = Vector2.new(18, 18);
